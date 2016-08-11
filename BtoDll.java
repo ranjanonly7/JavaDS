@@ -3,7 +3,8 @@ package LinkedList;
 /**
  * Created by rmukherj on 7/19/16.
  *In the following implementation, we traverse the tree in inorder fashion.
- * We add nodes at the beginning of current linked list and update head of the list using pointer to head pointer.
+ * We add nodes at the beginning of current linked list and update head of the list
+ * using pointer to head pointer.
  * Since we insert at the beginning, we need to process leaves in reverse order.
  * For reverse order, we first traverse the right subtree before the left subtree. i.e. do a reverse inorder traversal.
  */

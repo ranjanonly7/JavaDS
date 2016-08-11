@@ -6,11 +6,6 @@ import java.util.Stack;
  * Created by rmukherj on 7/26/16.
  */
 
-public final class Something{
-    public String Obvious(String name){
-        return "Ranjan";
-    }
-}
 
 public class StackPrac {
     public static String sbu = "Harry has a heart";
@@ -54,8 +49,20 @@ public class StackPrac {
         return wordReverse(word.substring(1))+word.charAt(0);
     }
 
-    public static void pascalTriangle(int n){
-
+    public static String reverseWords(String s) {
+        StringBuilder reversed = new StringBuilder();
+        int j = s.length();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == ' ') {
+                j = i;
+            } else if (i == 0 || s.charAt(i - 1) == ' ') {
+                if (reversed.length() != 0) {
+                    reversed.append(' ');
+                }
+                reversed.append(s.substring(i, j));
+            }
+        }
+        return reversed.toString();
     }
 
     public static void main(String[] args){
@@ -64,14 +71,14 @@ public class StackPrac {
         spi.reverse("");
 
         String w = "ranjan";
+        String g = "ranjan is the person";
         wordRotate(w, w.length());
 
        String str = wordReverse(w);
         System.out.println("The reverse string passed is "+str);
-        Something s = new Something();
-        String c = s.Obvious("Hello");
-        System.out.println(c);
-        s = new Something();
+        String st = reverseWords(g);
+        System.out.println(st);
+
     }
 
 

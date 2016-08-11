@@ -46,39 +46,17 @@ public class FlipBinaryTree {
     }
 
     //book solution
+public BinaryTree flipTreeRecursive(BinaryTree root, BinaryTree left, BinaryTree right, BinaryTree newRoot){
+    if(root == null){
+        return newRoot;
+    }
 
+    newRoot = flipTreeRecursive(root.left, root, root.right, root.left==null?root:root.left);
+    root.left = right;
+    root.right = left;
+    return newRoot;
+}
 
-
-//    public static BinaryTree flippityFlip(BinaryTree n) {
-//
-//        if(n == null) {
-//            return n;
-//        }
-//
-//        Stack<BinaryTree> S = new Stack<BinaryTree>();
-//        // push all left nodes into stack.
-//        while(n != null) {
-//            S.push(n);
-//            n = n.left;
-//        }
-//
-//        BinaryTree root = S.peek();
-//        while(!S.isEmpty()) {
-//            flip(S.pop(), S.peek());
-//        }
-//        return root;
-//    }
-//
-//    // takes node and its parent, and flips the node.
-//    private static void flip(BinaryTree n, BinaryTree p) {
-//        if(p==null) {
-//            n.left = null;
-//            n.right = null;
-//        } else {
-//            n.left = p.right;
-//            n.right = p;
-//        }
-//    }
 
     public void levelOrderNaiveApproach(BinaryTree root){
         int h = height(root);
@@ -102,19 +80,48 @@ public class FlipBinaryTree {
 
     public void levelOrderQueue(BinaryTree root){
         Queue q = (Queue) new LinkedList();
+
         int levelNodes =0;
         if(root==null) return;
         q.add(root);
         while(!q.isEmpty()){
-            levelNodes = q.size();
-            while(levelNodes>0){
+            //levelNodes = q.size();
+           // while(levelNodes>0){
                 BinaryTree n = (BinaryTree)q.remove();
                 System.out.print(" " + n.data);
                 if(n.left!=null) q.add(n.left);
                 if(n.right!=null) q.add(n.right);
-                levelNodes--;
+               // levelNodes--;
+            //}
+            //System.out.println("");
+        }
+    }
+
+    /*
+
+   class Node
+      int data;
+      Node left;
+      Node right;
+  */
+    void LevelOrder(Node root)
+    {
+        if(root == null){
+            return;
+        }
+
+        Queue q = (Queue)new LinkedList();
+        q.add(root);
+        while(!q.isEmpty()){
+            Node n = (Node)q.remove();
+            System.out.print(n.data + " ");
+            if(n.left!=null){
+                q.add(n.left);
             }
-            System.out.println("");
+
+            if(n.right!=null){
+                q.add(n.right);
+            }
         }
     }
 
@@ -148,11 +155,14 @@ public class FlipBinaryTree {
         tree.left.left.right = new BinaryTree(7);
 
         FlipBinaryTree bt = new FlipBinaryTree();
-        bt.levelOrderNaiveApproach(tree);
-        tree = Reverse(tree);
-      //  tree = bt.flipTree(tree);
-        //tree = inverse(tree);
+        int h = bt.height(tree);
+        //bt.levelOrderNaiveApproach(tree);
+        //tree = Reverse(tree);
+        //tree = bt.flipTree(tree);
+        //tree = inverse(tree);0
        // tree = flippityFlip(tree);
+        tree = bt.flipTreeRecursive(tree, null, null,null);
+     //   bt.printLevels(tree, h);
         bt.levelOrderNaiveApproach(tree);
 
     }
