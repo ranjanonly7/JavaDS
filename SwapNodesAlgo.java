@@ -112,7 +112,7 @@ import java.util.Scanner;
  6      7     8   [s]        6     7     8   [s]        6     7     8
  \          / \            /           / \              \         / \
  \        /   \          /           /   \              \       /   \
- 9      10   11        9           11   10              9     10   11 
+ 9      10   11        9           11   10              9     10   11
  */
 public class SwapNodesAlgo {
     public static final int ROOT_NODE = 1;
